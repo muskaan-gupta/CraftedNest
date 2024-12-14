@@ -1,23 +1,15 @@
-"use client"
-import { useState } from "react";
+import React from 'react';
+import Link from 'next/link';
 
-export default function Menu() {
-    const Menu=() =>{
-        const [open, setOpen]= useState(false)
-    }
+const Menu = () => {
   return (
-    <div > <img src="../../public/menu.png" 
-        alt="Menu" width={28} height={28}  
-        className="cursor-pointer" 
-        onClick={()=> setOpen((prev) => !prev)}/>
-        {
-            open && (
-            <div>
-
-            </div>)
-        }
-
-
+    <div className="menu">
+      <Link href="/">Home</Link>
+      <Link href="/about">About</Link>
+      <Link href="/services">Services</Link>
+      <Link href="/contact">Contact</Link>
     </div>
   );
-}
+};
+
+export default Menu;

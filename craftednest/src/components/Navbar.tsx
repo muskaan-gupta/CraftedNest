@@ -2,16 +2,42 @@
 //     return ();    // can be written like this
 // }
 // export default Navbar
-import Image from "next/image";
-import logo from "../../.next/image/Logo.jpg" // imported image from default name
-import Menu from "./Menu";
+'use client';  // Client-side rendering
 
-export default function Navbar() {
-    return(
-        <div >           {/*for all screen type padding for logo*/}
-        <Image src={logo} alt="logo" className=" ml-4 w-[130px] h-[100px] sm:w-[160px] sm:h-[120px] md:w-[180px] md:h-[130px]  lg:w-[200px] lg:h-[140px] xl:w-[250px] xl:h-[170px] 2xl:w-[250px] 2xl:h-[170px] "></Image>
-        {/* for Mobile*/}
-        <Menu/>
-        </div> 
-    );
-}
+import { useState } from 'react';
+import Menu from './Menu'; 
+
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  return (
+    <nav className="flex justify-between items-center p-4 bg-gray-800">
+      {/* Left side logo */}
+      <div className="text-white  flex items-center  "  >
+       <h1> CraftedNest</h1>
+      </div>
+
+      {/* Navbar links - only visible on larger screens */}
+      <div className="hidden md:flex space-x-6">
+        <a href="/" className="text-white hover:bg-gray-700 px-3 py-2 rounded">Home</a>
+        <a href="/about" className="text-white hover:bg-gray-700 px-3 py-2 rounded">About</a>
+        <a href="/services" className="text-white hover:bg-gray-700 px-3 py-2 rounded">Services</a>
+        <a href="/contact" className="text-white hover:bg-gray-700 px-3 py-2 rounded">Contact</a>
+      </div>
+
+      {/* Hamburger icon for small screens */}
+      <div className="md:hidden text-white text-3xl" onClick={toggleMenu}>
+        &#9776;
+      </div>
+
+      {/* Menu component - visible when isMenuOpen is true */}
+      {isMenuOpen && <Menu />}
+    </nav>
+  );
+};
+
+export default Navbar;
