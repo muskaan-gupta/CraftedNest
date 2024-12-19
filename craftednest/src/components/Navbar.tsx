@@ -26,7 +26,7 @@ const Navbar = () => {
         <a href="/" className="text-white hover:bg-gray-700 px-3 py-2 rounded">Home</a>
         <a href="/about" className="text-white hover:bg-gray-700 px-3 py-2 rounded">About</a>
         <a href="/services" className="text-white hover:bg-gray-700 px-3 py-2 rounded">Services</a>
-        <a href="/contact" className="text-white hover:bg-gray-700 px-3 py-2 rounded">Contact</a>
+        <a href="/login" className="text-white hover:bg-gray-700 px-3 py-2 rounded">Log-In</a>
       </div>
 
       {/* Hamburger icon for small screens */}
