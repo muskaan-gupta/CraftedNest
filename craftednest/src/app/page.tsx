@@ -10,9 +10,6 @@ export default function Home() {
         <meta name="description" content="Discover and shop unique handcrafted goods from talented artisans." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      
-
       <main className="container mx-auto py-10 px-4">
         {/* Hero Section */}
         <section className="text-center py-20 bg-gray-100 rounded-lg shadow-md">
