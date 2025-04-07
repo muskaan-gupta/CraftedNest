@@ -12,26 +12,26 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="relative flex items-center justify-between px-6 py-4 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 shadow-lg">
+    <nav className="relative flex items-center justify-between px-6 py-4 bg-gradient-to-r bg-white">
       {/* Left side text-based logo with pen icon */}
       <div className="flex items-center mx-8">
         <FaPen className="text-sky-400 text-2xl mr2" /> {/* Pen icon */}
         <h1 className="text-4xl font-extrabold tracking-wide">
-          <span className="text-white">Crafted</span>
-          <span className="text-sky-400">Nest</span>
+          <span className="text-sky-400">Crafted</span>
+          <span className="black">Nest</span>
         </h1>
       </div>
 
       {/* Navbar links - only visible on larger screens */}
       <div className="hidden md:flex items-center space-x-8">
-        <a href="/" className="text-white hover:text-sky-400 transition duration-300 ease-in-out hover:scale-105">Home</a>
-        <a href="/about" className="text-white hover:text-sky-400 transition duration-300 ease-in-out hover:scale-105">About</a>
-        <a href="/services" className="text-white hover:text-sky-400 transition duration-300 ease-in-out hover:scale-105">Services</a>
-        <a href="/login" className="text-white hover:text-sky-400 transition duration-300 ease-in-out hover:scale-105">Log-In</a>
+        <a href="/" className="text-black hover:text-sky-400 transition duration-300 ease-in-out hover:scale-105">Home</a>
+        <a href="/about" className="text-black hover:text-sky-400 transition duration-300 ease-in-out hover:scale-105">About</a>
+        <a href="/services" className="text-black hover:text-sky-400 transition duration-300 ease-in-out hover:scale-105">Services</a>
+        <a href="/login" className="text-black hover:text-sky-400 transition duration-300 ease-in-out hover:scale-105">Log-In</a>
       </div>
 
       {/* Hamburger icon for small screens */}
-      <div className="md:hidden text-white text-3xl cursor-pointer" onClick={toggleMenu}>
+      <div className="md:hidden text-black text-3xl cursor-pointer" onClick={toggleMenu}>
         &#9776;
       </div>
 

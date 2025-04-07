@@ -1,10 +1,11 @@
 "use client";
 import { useState } from "react";
-import { auth } from "@/firebase"; // Ensure you have your firebase config set up correctly
+import { auth, db} from "@/firebase"; 
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 const SignUpPage = () => {
   const googleProvider = new GoogleAuthProvider();
   const [formData, setFormData] = useState({
@@ -24,8 +25,16 @@ const SignUpPage = () => {
     if (!email || !password || !role) return alert("Please fill all fields");
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       alert(`Signed up as ${role}`);
+      const user = userCredential.user;
+
+      // Store additional user info in Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        email: user.email,
+        role: role,
+        createdAt: new Date(),
+      });
       router.push(`/dashboard/${role}`); // Redirect to respective dashboard
     } catch (error: any) {
       alert(error.message);
@@ -36,6 +45,11 @@ const SignUpPage = () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
+      await setDoc(doc(db, "users", user.uid), {
+        email: user.email,
+        role: "user",
+        createdAt: new Date(),
+      });
       alert(`Signed in as ${user.displayName} (User)`);
       router.push("/dashboard/user"); // Redirect to user dashboard
     } catch (error: any) {
@@ -47,6 +61,11 @@ const SignUpPage = () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
+      await setDoc(doc(db, "users", user.uid), {
+        email: user.email,
+        role: "creator",
+        createdAt: new Date(),
+      });
       alert(`Signed in as ${user.displayName} (Creator)`);
       router.push("/dashboard/creator"); // Redirect to creator dashboard
     } catch (error: any) {
@@ -56,8 +75,8 @@ const SignUpPage = () => {
 
   return (
     <div
-      className="flex flex-col items-center justify-center min-h-screen w-full h-screen bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('/bg.jpg')" }}
+      className="flex flex-col items-center justify-center min-h-screen w-full h-screen bg-cover bg-center bg-no-repeat bg-white"
+    
     >
       <div className="bg-white p-8 rounded-lg shadow-xl w-96 border border-gray-200">
         <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">Create Your Account</h2>
@@ -91,7 +110,7 @@ const SignUpPage = () => {
         <button
           onClick={handleSignUp}
           className="w-full bg-green-500 text-white p-3 rounded-lg hover:bg-green-600 transition duration-300"
-        >
+   >
           Sign Up
         </button>
 
