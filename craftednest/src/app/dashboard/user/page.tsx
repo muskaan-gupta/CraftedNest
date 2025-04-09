@@ -1,12 +1,12 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import Navbar from '@/components/Navbar';
+import { NavbarforUser } from '@/components/Navbar';
 
-export default function Home() {
+const DashboardPage = () => {
   return (
     <div className="bg-white min-h-screen">
-      <Navbar />
+      <NavbarforUser />
       <Head>
         <title>CraftedNest | Home</title>
         <meta name="description" content="Discover and shop unique handcrafted goods from talented artisans." />
@@ -62,19 +62,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Call to Action Section */}
-        <section className="text-center py-20 bg-white rounded-lg shadow-md">
-          <h3 className="text-3xl font-bold text-black mb-4">Are You an Artisan?</h3>
-          <p className="text-lg text-black mb-8">
-            Join CraftedNest today and showcase your handcrafted creations to the world.
-          </p>
-          <Link legacyBehavior href="/signup">
-            <a className="bg-blue-500 text-white py-2 px-6 rounded-full hover:bg-blue-600">
-              Join Now
-            </a>
-          </Link>
-        </section>
       </main>
     </div>
   );
 }
+export default DashboardPage;

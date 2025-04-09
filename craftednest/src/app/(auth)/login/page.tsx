@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
+import Navbar from "@/components/Navbar";
 
 const LoginPage = () => {
   const googleProvider = new GoogleAuthProvider();
@@ -63,9 +64,10 @@ const LoginPage = () => {
 
 
   return (
-    <div
-      className="flex flex-col items-center justify-center min-h-screen w-full h-screen bg-cover bg-center bg-no-repeat bg-white"
-    >
+    <div className="bg-white min-h-screen">
+      <Navbar />
+      
+    <div className="flex flex-col items-center justify-center min-h-screen w-full h-screen bg-cover bg-center bg-no-repeat bg-white">
       <div className="bg-white p-8 rounded-lg shadow-xl w-96 border border-gray-200">
         <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">Login to Your Account</h2>
 
@@ -109,6 +111,7 @@ const LoginPage = () => {
           </a>
         </p>
       </div>
+    </div>
     </div>
   );
 };
