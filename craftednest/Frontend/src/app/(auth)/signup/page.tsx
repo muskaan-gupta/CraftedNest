@@ -76,12 +76,12 @@ const SignUpPage = () => {
 
   return (
     <div className="bg-white min-h-screen">
-          <Navbar />
+      <Navbar />
     <div
       className="flex flex-col items-center justify-center min-h-screen w-full h-screen bg-cover bg-center bg-no-repeat bg-white"
     
     >
-      <Navbar /> 
+    
       <div className="bg-white p-8 rounded-lg shadow-xl w-96 border border-gray-200">
         <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">Create Your Account</h2>
 
