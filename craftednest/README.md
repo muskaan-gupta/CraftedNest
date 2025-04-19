@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚡ FlashLearn — Your Personal Flashcard Learning Assistant
+an interactive study tool that allows users to review and memorize information with digital flashcards. Users can flip cards to reveal answers and navigate through the set using "Next" and "Previous" buttons using React, Used MySQL to store the flashcards,.  
 
-## Getting Started
+**FlashLearn** is a smart, responsive flashcard learning platform that helps you master any subject using intelligent spaced repetition and performance tracking. Whether you're prepping for exams or learning something new, FlashLearn adapts to your pace and boosts retention.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Key Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+📝 **Create Custom Flashcards**  
+Design personalized flashcards with text, images, and formatting to suit your study needs.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+🧠 **Smart Learning Algorithm**  
+Utilizes a spaced repetition technique to show cards at optimal intervals for long-term memory retention.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+📊 **Track Your Progress**  
+Stay motivated with insightful analytics on your total cards, likes, comments, and study history.
 
-## Learn More
+📋 **Clean Dashboard**  
+Get a quick overview of your activity with recent flashcards, stats, and easy navigation.
 
-To learn more about Next.js, take a look at the following resources:
+📱 **Fully Responsive UI**  
+Enjoy a sleek and accessible experience on any device — desktop, tablet, or mobile.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🖼️ Preview
 
-## Deploy on Vercel
+### 🔹 Home Page
+![FlashLearn Home](![Screenshot (10)](https://github.com/user-attachments/assets/a5774dc9-94bf-4db4-a660-36aab4cbda7f)
+)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 🔹 User Dashboard
+![FlashLearn Dashboard](./path-to-your-screenshot/0bb5d429-3c6b-4b4a-926d-c13f3ffc0c4f.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+
+## 🧪 Tech Stack
+
+### Frontend
+- React.js
+- Tailwind CSS
+- ShadeCN
+
+### Backend
+- Node.js + Express.js
+- MongoDB + Mongoose
+- Cloudinary + Multer (file uploads)
+
+### Tools & DevOps
+- Git, GitHub
+- Render (Deployment)
+- Postman (API testing)
+
+---
+
