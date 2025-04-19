@@ -1,52 +1,67 @@
-# ⚡ FlashLearn — Your Personal Flashcard Learning Assistant
-an interactive study tool that allows users to review and memorize information with digital flashcards. Users can flip cards to reveal answers and navigate through the set using "Next" and "Previous" buttons using React, Used MySQL to store the flashcards,.  
+# 🧵 CraftedNest — Discover Handcrafted Treasures
 
-**FlashLearn** is a smart, responsive flashcard learning platform that helps you master any subject using intelligent spaced repetition and performance tracking. Whether you're prepping for exams or learning something new, FlashLearn adapts to your pace and boosts retention.
+**CraftedNest** is an online marketplace that bridges the gap between passionate local artisans and customers seeking unique, handcrafted goods. Built using **Next.js**, the platform delivers a fast, seamless, and mobile-friendly experience, empowering creators to showcase and sell their beautiful creations with ease.
 
 ---
 
-## ✨ Key Features
+## ✨ Features
 
-📝 **Create Custom Flashcards**  
-Design personalized flashcards with text, images, and formatting to suit your study needs.
+🛍️ **Marketplace for Handcrafted Goods**  
+Explore a diverse range of authentic handmade items crafted by local artisans.
 
-🧠 **Smart Learning Algorithm**  
-Utilizes a spaced repetition technique to show cards at optimal intervals for long-term memory retention.
+🧵 **Artisan Profiles**  
+Each seller gets a personalized profile to tell their story and display their work.
 
-📊 **Track Your Progress**  
-Stay motivated with insightful analytics on your total cards, likes, comments, and study history.
+📦 **Product Listings**  
+Artisans can easily add, update, or delete their products with images, descriptions, and pricing.
 
-📋 **Clean Dashboard**  
-Get a quick overview of your activity with recent flashcards, stats, and easy navigation.
+⚡ **Blazing Fast Performance**  
+Built with Next.js for optimized performance, server-side rendering, and smooth navigation.
 
-📱 **Fully Responsive UI**  
-Enjoy a sleek and accessible experience on any device — desktop, tablet, or mobile.
+📱 **Fully Responsive Design**  
+Shop and manage your store on any device — mobile, tablet, or desktop.
+
+🔐 **Authentication & Authorization** *(if implemented)*  
+Secure login/signup for users and sellers with role-based access control.
+
+🌐 **Cloud Image Hosting** *(if implemented)*  
+Product images are stored using Cloudinary for fast and reliable delivery.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js  
+- **Frontend:** React, Tailwind CSS  
+- **Backend:** Node.js, Express *(if used)*  
+- **Database:** MongoDB *(optional)*  
+- **Authentication:** JWT, NextAuth *(optional)*  
+- **Image Uploads:** Cloudinary, Multer *(optional)*
 
 ---
 
 ## 🖼️ Preview
 
-### 🔹 Home Page
-![FlashLearn Home](![Screenshot (10)](https://github.com/user-attachments/assets/a5774dc9-94bf-4db4-a660-36aab4cbda7f)
-)
+### 🔹 Home Page  
+![CraftedNest Home](./path-to-your-screenshot/homepage.png)
 
-### 🔹 User Dashboard
-![FlashLearn Dashboard](./path-to-your-screenshot/0bb5d429-3c6b-4b4a-926d-c13f3ffc0c4f.png)
+### 🔹 Product Listing  
+![CraftedNest Product Page](./path-to-your-screenshot/productpage.png)
 
 ---
-
 
 ## 🧪 Tech Stack
 
 ### Frontend
-- React.js
+- Next.js
 - Tailwind CSS
-- ShadeCN
+- React.js
 
 ### Backend
 - Node.js + Express.js
 - MongoDB + Mongoose
 - Cloudinary + Multer (file uploads)
+- Firebase
 
 ### Tools & DevOps
 - Git, GitHub
