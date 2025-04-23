@@ -4,18 +4,20 @@ import { auth, db, storage } from "@/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-
-import { NavbarforCreator } from '@/components/Navbar';
+import  Navbar  from '@/components/Navbar';
 
 const Profile = () => {
   const [bio, setBio] = useState("");
   const [name, setName] = useState("");
   const [image, setImage] = useState<File | null>(null);
   const [contact, setContact] = useState<string[]>([]);
+  const [imageUrl, setImageUrl] = useState<string>("/default-avatar.png");
+  const [contactInput, setContactInput] = useState<string>("");
   const [instagram, setInstagram] = useState("");
   const [website, setWebsite] = useState("");
   const [user, setUser] = useState<any>(null); // Track current user state
   const [loading, setLoading] = useState(true);
+  const [gender, setGender] = useState<string>(""); // Gender state
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
@@ -47,6 +49,8 @@ const Profile = () => {
           setContact(data.Contact || []);
           setInstagram(data.Instagram || "");
           setWebsite(data.Website || "");
+          setGender(data.gender || "");
+          setImageUrl(data.imageUrl || "/default-avatar.png");
         }
       } catch (err) {
         console.error("Error fetching profile:", err);
@@ -68,25 +72,40 @@ const Profile = () => {
       Contact: contact,
       Instagram: instagram,
       Website: website,
+      gender,
     });
     alert("✅ Profile updated!");
+    console.log("Selected image:", image);
     // Upload image only if selected
     if (image) {
-      const imageRef = ref(storage, `image/${user.uid}`);
-      await uploadBytes(imageRef, image);
-      const url = await getDownloadURL(imageRef);
-      await updateDoc(docRef, { image: url });
-      setImage(url);
+      if (!image.type.startsWith("image/")) {
+        alert("Please upload a valid image file.");
+        return;
+      }
+      if (image.size > 5 * 1024 * 1024) { // 5 MB limit
+        alert("File size exceeds 5 MB.");
+        return;
+      }
+      const imageRef = ref(storage, `images/${user.uid}`); // Ensure the path is correct
+      await uploadBytes(imageRef, image); // Upload the file
+      const url = await getDownloadURL(imageRef); // Get the download URL
+      await updateDoc(docRef, { imageUrl: url }); // Save the URL in Firestore
+      setImageUrl(url); // Update the state with the new URL
     } else {
       // Set default profile pic if not present in Firestore
       const snap = await getDoc(docRef);
       const data = snap.data();
       if (!data?.profilePic) {
-        const defaultUrl = "/default-avatar.png";
-        await updateDoc(docRef, { image: defaultUrl });
-        setImage(defaultUrl);
+        const defaultUrl =gender === "male"
+        ? "/default-male-avatar.png"
+        : gender === "female"
+        ? "/default-female-avatar.png"
+        : "/default-avatar.png"; 
+        await updateDoc(docRef, { imageUrl: defaultUrl });
+        setImageUrl(defaultUrl);
       }
     }
+
 
     
   } catch (error) {
@@ -103,19 +122,29 @@ const Profile = () => {
 
   return (
     <div className="bg-white min-h-screen">
-      <NavbarforCreator />
+      <Navbar />
       <div className="max-w-6xl mx-auto p-6 text-white flex flex-col lg:flex-row gap-12">
         {/* Left Side - Profile Image */}
         <div className="flex flex-col items-center lg:w-1/3">
           <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-md">
-            <img src={image ? URL.createObjectURL(image) : "/default-avatar.png"} alt="Profile" className="w-full h-full object-cover"/>
+            <img src={ imageUrl} alt="Profile" className="w-full h-full object-cover"/>
           </div>
-          <input
+          {/* <input
             type="file"
-            className="mt-3 text-sm text-black"
             accept="image/*"
-            onChange={(e) => setImage(e.target.files?.[0] || null)}
-          />
+            className="mt-4 p-2 w-full rounded bg-gray-800 text-white"
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) {
+                setImage(file);
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                  setImageUrl(reader.result as string);
+                };
+                reader.readAsDataURL(file);
+              }
+            }}>
+            </input> */}
         </div>
 
         {/* Right Side - Profile Details */}
@@ -150,17 +179,41 @@ const Profile = () => {
             <input
               type="text"
               className="mt-2 p-2 w-full rounded bg-gray-800 text-white"
-              placeholder="Comma separated numbers"
-              value={contact}
-
-              onChange={(e) => setContact(e.target.value)}
+              value={contactInput}
+              onChange={(e) => setContactInput(e.target.value)}
               onBlur={() => {
-                if (contact) {
-                  setContact(contact.split(",").map((s) => s.trim()));
-                  setContact("");
+                if (contactInput) {
+                  setContact(contactInput.split(",").map((s) => s.trim()));
+                  setContactInput("");
                 }
               }}
             />
+          </div>
+          
+          <div className="mb-6">
+            <h2 className="text-2xl font-semibold text-black">Gender</h2>
+            <div className="flex gap-4 mt-2">
+              <label className="flex items-center gap-2 text-2xl font-bold mb-4 text-black">
+                <input
+                  type="radio"
+                  name="gender"
+                  value="male"
+                  checked={gender === "male"}
+                  onChange={(e) => setGender(e.target.value)}
+                />
+                Male
+              </label>
+              <label className="flex items-center gap-2 text-2xl font-bold mb-4 text-black">
+                <input
+                  type="radio"
+                  name="gender"
+                  value="female"
+                  checked={gender === "female"}
+                  onChange={(e) => setGender(e.target.value)}
+                />
+                Female
+              </label>
+            </div>
           </div>
 
           {/* Social Links */}

@@ -1,12 +1,12 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { NavbarforUser } from '@/components/Navbar';
+import  Navbar  from '../../../components/Navbar';
 
 const DashboardPage = () => {
   return (
     <div className="bg-white min-h-screen">
-      <NavbarforUser />
+      <Navbar />
       <Head>
         <title>CraftedNest | Home</title>
         <meta name="description" content="Discover and shop unique handcrafted goods from talented artisans." />
@@ -14,13 +14,15 @@ const DashboardPage = () => {
       </Head>
       <main className="container mx-auto py-10 px-4">
         {/* Hero Section */}
-        <section className="text-center py-20 bg-white rounded-lg shadow-md">
+        <section className="text-center py-20 bg-white rounded-lg shadow-md" style={{
+    backgroundImage: "url('https://i.makeagif.com/media/8-29-2017/BoktV9.gif')",
+  }}>
           <h2 className="text-4xl font-bold mb-4">
-            <span className="text-black-500 font-bold"> Welcome to </span>
+            <span className="text-white font-bold"> Welcome to </span>
             <span className="text-blue-500">Crafted</span>
-            <span className="text-black">Nest</span>
+            <span className="text-white">Nest</span>
           </h2>
-          <p className="text-lg text-black mb-8">
+          <p className="text-lg text-white mb-8">
             Discover unique, handcrafted goods from talented artisans around the world.
           </p>
           <Link legacyBehavior href="/crafts">

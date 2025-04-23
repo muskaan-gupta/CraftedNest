@@ -36,7 +36,7 @@ const SignUpPage = () => {
         role: role,
         createdAt: new Date(),
       });
-      router.push(`/dashboard/${role}`); // Redirect to respective dashboard
+      router.push(`/dashboard/`); // Redirect to respective dashboard
     } catch (error: any) {
       alert(error.message);
     }
@@ -52,7 +52,7 @@ const SignUpPage = () => {
         createdAt: new Date(),
       });
       alert(`Signed in as ${user.displayName} (User)`);
-      router.push("/dashboard/user"); // Redirect to user dashboard
+      router.push("/dashboard"); // Redirect to user dashboard
     } catch (error: any) {
       alert(error.message);
     }
@@ -68,7 +68,7 @@ const SignUpPage = () => {
         createdAt: new Date(),
       });
       alert(`Signed in as ${user.displayName} (Creator)`);
-      router.push("/dashboard/creator"); // Redirect to creator dashboard
+      router.push("/dashboard"); // Redirect to creator dashboard
     } catch (error: any) {
       alert(error.message);
     }
