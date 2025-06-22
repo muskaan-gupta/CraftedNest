@@ -94,7 +94,7 @@ const Navbar = () => {
             </a>
             {role === 'creator' && (
               <a
-                href="/dashboard/crator/newcard"
+                href="/dashboard/crator/newcarft"
                 className="text-white hover:text-sky-400 transition duration-300 ease-in-out hover:scale-105"
               >
                 Publish-Craft
@@ -175,7 +175,7 @@ const Navbar = () => {
               </a>
               {role === 'creator' && (
                 <a
-                  href="/dashboard/crator/newcard"
+                  href="/dashboard/crator/newcarft"
                   className="hover:text-sky-400 transition duration-300"
                   onClick={() => setIsMenuOpen(false)}
                 >

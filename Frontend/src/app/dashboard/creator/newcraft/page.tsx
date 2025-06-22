@@ -1,11 +1,9 @@
 "use client";
 
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/firebase";
 import { useState } from "react";
-import {  storage, auth } from "@/firebase";
-import {  addDoc, Timestamp } from "firebase/firestore";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { db, storage, auth } from "@/firebase";
 
 export default function AddProduct() {
   const [title, setTitle] = useState("");
@@ -21,36 +19,44 @@ export default function AddProduct() {
     }
 
     setUploading(true);
+
     try {
+      
       const user = auth.currentUser;
       if (!user) {
-        alert("You must be logged in");
+        alert("You must be logged in to add a product.");
+        setUploading(false);
         return;
       }
 
+      // Upload image to Firebase Storage
       const imageRef = ref(storage, `productImages/${user.uid}-${Date.now()}`);
       await uploadBytes(imageRef, image);
       const imageUrl = await getDownloadURL(imageRef);
 
+      // Add product to Firestore
       await addDoc(collection(db, "products"), {
         title,
         description: desc,
         price: parseFloat(price),
         imageUrl,
         creatorId: user.uid,
-        createdAt: Timestamp.now()
+        createdAt: Timestamp.now(),
       });
 
-      alert("Product added!");
+      alert("Product added successfully!");
+
+      // Reset fields
       setTitle("");
       setDesc("");
       setPrice("");
       setImage(null);
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error("Error adding product:", error);
       alert("Failed to upload product.");
+    } finally {
+      setUploading(false);
     }
-    setUploading(false);
   };
 
   return (
@@ -78,11 +84,12 @@ export default function AddProduct() {
       />
       <input
         type="file"
+        accept="image/*"
         className="mb-3"
         onChange={(e) => setImage(e.target.files?.[0] || null)}
       />
       <button
-        className="bg-blue-600 text-white px-4 py-2 rounded"
+        className="bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50"
         onClick={handleAddProduct}
         disabled={uploading}
       >

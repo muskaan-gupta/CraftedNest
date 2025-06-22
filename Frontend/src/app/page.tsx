@@ -25,12 +25,16 @@ export default function Home() {
           </h2>
           <p className="text-lg text-white mb-8">
             Discover unique, handcrafted goods from talented artisans around the world.
+            <br />
+          “Every handmade piece tells a story. Find yours at CraftedNest.”
+    
           </p>
-          <Link legacyBehavior href="/explore">
+          <Link legacyBehavior href="/signup">
             <a className="bg-blue-500 text-white py-2 px-6 rounded-full hover:bg-blue-600">
-              Explore Crafts
+              Join Now
             </a>
           </Link>
+          
         </section>
 
         {/* Featured Crafts */}
