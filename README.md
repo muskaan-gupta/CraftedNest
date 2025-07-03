@@ -21,10 +21,10 @@ Built with Next.js for optimized performance, server-side rendering, and smooth 
 📱 **Fully Responsive Design**  
 Shop and manage your store on any device — mobile, tablet, or desktop.
 
-🔐 **Authentication & Authorization** *(if implemented)*  
+🔐 **Authentication & Authorization**  
 Secure login/signup for users and sellers with role-based access control.
 
-🌐 **Cloud Image Hosting** *(if implemented)*  
+🌐 **Cloud Image Hosting** 
 Product images are stored using Cloudinary for fast and reliable delivery.
 
 ---
