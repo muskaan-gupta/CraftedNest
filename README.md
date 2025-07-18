@@ -43,10 +43,8 @@ Product images are stored using Cloudinary for fast and reliable delivery.
 ## 🖼️ Preview
 
 ### 🔹 Home Page  
-![CraftedNest Home](./path-to-your-screenshot/homepage.png)
+<img width="1829" height="927" alt="Screenshot 2025-05-12 121510" src="https://github.com/user-attachments/assets/c73e06a5-8f91-4e81-9bfa-e467770fcc40" />
 
-### 🔹 Product Listing  
-![CraftedNest Product Page](./path-to-your-screenshot/productpage.png)
 
 ---
 
