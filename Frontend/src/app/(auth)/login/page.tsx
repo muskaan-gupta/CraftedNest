@@ -5,6 +5,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
 import Navbar from "@/components/Navbar";
+import Link from "next/link";
 
 const LoginPage = () => {
   const googleProvider = new GoogleAuthProvider();
@@ -53,9 +54,9 @@ const LoginPage = () => {
 
         <p className="text-center text-sm text-gray-600 mt-6">
           Don't have an account?{" "}
-          <a href="/signup" className="text-blue-500 hover:underline">
+          <Link href="/signup" className="text-blue-500 hover:underline">
             Sign Up
-          </a>
+          </Link>
         </p>
       </div>
     </div>
