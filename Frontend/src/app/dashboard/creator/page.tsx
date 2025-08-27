@@ -1,14 +1,14 @@
 "use client";
 import Head from 'next/head';
 import Link from 'next/link';
-import {  useState } from "react";
+
 
 import  Navbar  from '../../../components/Navbar';
 import  FeaturedCrafts from '../../../components/Craft/featured-craft';
 
 
 const DashboardPage = () => {
-  const [crafts, setCrafts] = useState<{ id: string; imageUrl: string; title: string; description: string; price: number }[]>([]);
+  
 
   // Fetch crafts created by the logged-in user
  
@@ -59,9 +59,9 @@ const DashboardPage = () => {
         <section className="py-10">
             {/* List of Crafts */}
             <h2 className="text-2xl font-semibold mb-4">Your Crafts</h2>
-            {crafts.length === 0 ? (
-            <p className="text-gray-600">You haven't added any crafts yet.</p>
-             ) : (
+            
+            <p className="text-gray-600">You haven&apos;t added any crafts yet.</p>
+             {/* ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                {crafts.map((craft) => (
                  <div key={craft.id} className="border rounded p-4">
@@ -72,7 +72,7 @@ const DashboardPage = () => {
               />
               <h3 className="text-lg font-bold">{craft.title}</h3>
               <p className="text-sm text-gray-600">{craft.description}</p>
-              <p className="text-sm font-semibold mt-2">${craft.price}</p>
+              <p className="text-sm font-semibold mt-2">₹{craft.price}</p>
               <div className="flex justify-between mt-4">
                 <Link href={`/dashboard/creator/editcraft?id=${craft.id}`}>
                   <button className="text-blue-500 hover:underline">Edit</button>
@@ -82,12 +82,10 @@ const DashboardPage = () => {
                   className="text-red-500 hover:underline"
                 >
                   Delete
-                </button>
+                </button> }
               </div>
-              </div>
-          ))}
-          </div>
-        )}
+              </div>*/
+             }
         </section>
       </main>
     </div>
