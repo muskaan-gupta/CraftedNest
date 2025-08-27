@@ -5,6 +5,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import  Navbar  from '@/components/Navbar';
+import Image from "next/image";
 
 const Profile = () => {
   const [bio, setBio] = useState("");
@@ -127,7 +128,7 @@ const Profile = () => {
         {/* Left Side - Profile Image */}
         <div className="flex flex-col items-center lg:w-1/3">
           <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-md">
-            <img src={ imageUrl} alt="Profile" className="w-full h-full object-cover"/>
+            <Image src={imageUrl} alt="Profile" width={192} height={192} className="w-full h-full object-cover" />
           </div>
           {/* <input
             type="file"
