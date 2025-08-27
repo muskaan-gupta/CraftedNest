@@ -8,7 +8,7 @@ import { onAuthStateChanged,signOut } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore'; // Firestore imports
 import { db } from '../firebase'; // Firestore instance
  import type { User } from 'firebase/auth';
-import { Link } from 'lucide-react';
+import Link from "next/link";
 
 // import { useAuthState } from 'react-firebase-hooks/auth'; // Import Firebase hooks
 
@@ -182,7 +182,7 @@ const Navbar = () => {
               </Link>
               {role === 'creator' && (
                 <Link
-                  href="/dashboard/crator/newcarft"
+                  href="/dashboard/creator/newcraft"
                   className="hover:text-sky-400 transition duration-300"
                   onClick={() => setIsMenuOpen(false)}
                 >
