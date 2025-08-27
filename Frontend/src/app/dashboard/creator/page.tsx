@@ -1,37 +1,19 @@
 "use client";
 import Head from 'next/head';
 import Link from 'next/link';
+import {  useState } from "react";
 
-import { useEffect, useState } from "react";
-import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
-import { db, auth } from "@/firebase";
-import { User } from "firebase/auth";
 import  Navbar  from '../../../components/Navbar';
 import  FeaturedCrafts from '../../../components/Craft/featured-craft';
 
 
 const DashboardPage = () => {
   const [crafts, setCrafts] = useState<{ id: string; imageUrl: string; title: string; description: string; price: number }[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState<null | User>(null);
+
   // Fetch crafts created by the logged-in user
+ 
   
-    const handleDelete = async (id: string) => {
-      try {
-        await deleteDoc(doc(db, "products", id));
-        alert("Craft deleted successfully!");
-        setCrafts(crafts.filter((craft) => craft.id !== id));
-      } catch (error) {
-        console.error("Error deleting craft:", error);
-      }
-    };
-    if (loading) {
-      return <p className="text-center mt-10">Loading your crafts...</p>;
-    }
-  
-    if (!user) {
-      return <p className="text-center mt-10">You must be logged in to view this page.</p>;
-    }
+     
 
   return (
     <div className="bg-white min-h-screen">
@@ -96,7 +78,7 @@ const DashboardPage = () => {
                   <button className="text-blue-500 hover:underline">Edit</button>
                 </Link>
                 <button
-                  onClick={() => handleDelete(craft.id)}
+                  
                   className="text-red-500 hover:underline"
                 >
                   Delete

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { SAMPLE_CRAFTS, FEATURED_CREATORS, CATEGORIES, MATERIALS } from "@/lib/constants";
 import CraftCard from "../../components/Craft/craft-card";

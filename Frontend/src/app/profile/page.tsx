@@ -15,7 +15,7 @@ const Profile = () => {
   const [contactInput, setContactInput] = useState<string>("");
   const [instagram, setInstagram] = useState("");
   const [website, setWebsite] = useState("");
-  const [user, setUser] = useState<any>(null); // Track current user state
+  const [user, setUser] = useState<import("firebase/auth").User | null>(null); // Track current user state
   const [loading, setLoading] = useState(true);
   const [gender, setGender] = useState<string>(""); // Gender state
 

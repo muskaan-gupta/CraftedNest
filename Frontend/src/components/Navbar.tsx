@@ -7,12 +7,15 @@ import { auth } from '../firebase';
 import { onAuthStateChanged,signOut } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore'; // Firestore imports
 import { db } from '../firebase'; // Firestore instance
+ import type { User } from 'firebase/auth';
+import { Link } from 'lucide-react';
 
 // import { useAuthState } from 'react-firebase-hooks/auth'; // Import Firebase hooks
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [user, setUser] = useState<any>(null); 
+ 
+  const [user, setUser] = useState<User | null>(null); // Track current user state
   const router = useRouter();
   const [role, setRole] = useState<string | null>(null); 
 
@@ -50,8 +53,12 @@ const Navbar = () => {
       setRole(null); 
       router.push('/'); // Navigate to the home page
       alert('Logged out successfully');
-    } catch (error: any) {
-      alert(`Error: ${error.message}`);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        alert(`Error: ${error.message}`);
+      } else {
+        alert('An unknown error occurred.');
+      }
     } finally {
       setIsMenuOpen(false); // Close the menu after logout
     }
@@ -74,31 +81,31 @@ const Navbar = () => {
       <div className="hidden md:flex items-center space-x-8">
         {user ? (
           <>
-            <a
+            <Link
           href="/about"
           className="text-white hover:text-sky-400 transition duration-300 ease-in-out hover:scale-105"
         >
           About
-        </a>
-            <a
+        </Link>
+            <Link
               href="/explore"
               className="text-white hover:text-sky-400 transition duration-300 ease-in-out hover:scale-105"
             >
               Explore-Crafts
-            </a>
-            <a
+            </Link>
+            <Link
               href="/profile"
               className="text-white hover:text-sky-400 transition duration-300 ease-in-out hover:scale-105"
             >
               Profile
-            </a>
+            </Link>
             {role === 'creator' && (
-              <a
+              <Link
                 href="/dashboard/creator/newcraft"
                 className="text-white hover:text-sky-400 transition duration-300 ease-in-out hover:scale-105"
               >
                 Publish-Craft
-              </a>
+              </Link>
             )}
             <button
               onClick={logoutHandler}
@@ -110,30 +117,30 @@ const Navbar = () => {
           </>
         ) : (
           <>
-          <a
+          <Link
           href="/"
           className="text-white hover:text-sky-400 transition duration-300 ease-in-out hover:scale-105"
         >
           Home
-        </a>
-        <a
+        </Link>
+        <Link
           href="/about"
           className="text-white hover:text-sky-400 transition duration-300 ease-in-out hover:scale-105"
         >
           About
-        </a>
-          <a
+        </Link>
+          <Link
             href="/login"
             className="text-white hover:text-sky-400 transition duration-300 ease-in-out hover:scale-105"
           >
             Log-In
-          </a>
-          <a
+          </Link>
+          <Link
             href="/signup"
             className="text-white hover:text-sky-400 transition duration-300 ease-in-out hover:scale-105"
           >
             Sign-Up
-          </a>
+          </Link>
           </>
         )}
       </div>
@@ -152,35 +159,35 @@ const Navbar = () => {
           
           {user ? (
             <>
-          <a
+          <Link
             href="/about"
             className="hover:text-sky-400 transition duration-300"
             onClick={() => setIsMenuOpen(false)}
           >
-            About </a>
-              <a
+            About </Link>
+              <Link
                 href="/explore"
                 className="hover:text-sky-400 transition duration-300"
                 onClick={() => setIsMenuOpen(false)}
                 >
                 Explore-Crafts
-                </a>
+                </Link>
               
-              <a
+              <Link
                 href="/profile"
                 className="hover:text-sky-400 transition duration-300"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Profile
-              </a>
+              </Link>
               {role === 'creator' && (
-                <a
+                <Link
                   href="/dashboard/crator/newcarft"
                   className="hover:text-sky-400 transition duration-300"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Publish-Craft
-                </a>
+                </Link>
               )}
             
               <button
@@ -192,32 +199,32 @@ const Navbar = () => {
             </>
           ) : (
             <>
-            <a
+            <Link
             href="/"
             className="hover:text-sky-400 transition duration-300"
             onClick={() => setIsMenuOpen(false)}
           >
             Home
-          </a>
-          <a
+          </Link>
+          <Link
             href="/about"
             className="hover:text-sky-400 transition duration-300"
             onClick={() => setIsMenuOpen(false)}
           >
-            About </a>
-            <a
+            About </Link>
+            <Link
               href="/login"
               className="hover:text-sky-400 transition duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
               Log-In
-            </a>
-            <a
+            </Link>
+            <Link
               href="/signup"
               className="hover:text-sky-400 transition duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
-              Sign-Up </a>
+              Sign-Up </Link>
             </>
           )}
         </div>
