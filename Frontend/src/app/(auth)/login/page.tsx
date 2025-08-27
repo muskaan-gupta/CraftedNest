@@ -1,7 +1,5 @@
 "use client";
-import { useState } from "react";
 import { auth, db} from "@/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
@@ -10,37 +8,8 @@ import Navbar from "@/components/Navbar";
 
 const LoginPage = () => {
   const googleProvider = new GoogleAuthProvider();
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  }); // no need to take role here as we are not creating a new user
+ // no need to take role here as we are not creating a new user
   const router = useRouter();
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleLogin = async () => {
-    const { email, password} = formData;
-    if (!email || !password ) return alert("Please fill all fields");
-
-    try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      const userDoc = await getDoc(doc(db, "users", user.uid));
-      if (userDoc.exists()) {
-        const userData = userDoc.data();
-        const role = userData.role;
-
-      alert(`Logged in as ${role}`);
-        router.push(`/dashboard/${role}`);// Redirect to respective dashboard
-    }
-    else {
-        alert("User role not found. Please contact support.");
-      }}catch (error: any) {
-      alert(error.message);
-    }
-  };
 
   const handleGoogleLogin = async () => {
     try {

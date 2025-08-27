@@ -8,11 +8,24 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { SAMPLE_CRAFTS } from "@/lib/constants";
 
+interface Creator {
+  id: string;
+  avatar: string;
+  name: string;
+}
+
+// Updated creator type
+const creator: Creator | null = {
+  id: "",
+  avatar: "",
+  name: "",
+};
+
 export default function CraftPage() {
   const params = useParams();
   const craftId = params.id as string;
 
-  const [creator, setCreator] = useState<any>(null);
+  const [creator, setCreator] = useState<Creator | null>(null);
   const [loading, setLoading] = useState(true);
   const [favorited, setFavorited] = useState(false);
 
@@ -27,14 +40,14 @@ export default function CraftPage() {
         const creatorSnap = await getDoc(creatorRef);
 
         if (creatorSnap.exists()) {
-          setCreator(creatorSnap.data());
+          setCreator(creatorSnap.data() as Creator);
         } else {
           console.error("Creator not found");
-          setCreator({ id: craft.creatorId, name: "Unknown Creator" });
+          setCreator({ id: craft.creatorId, name: "Unknown Creator", avatar: "" });
         }
       } catch (error) {
         console.error("Error fetching creator:", error);
-        setCreator({ id: craft.creatorId, name: "Unknown Creator" });
+        setCreator({ id: craft.creatorId, name: "Unknown Creator", avatar: "" });
       } finally {
         setLoading(false);
       }
@@ -47,7 +60,7 @@ export default function CraftPage() {
     return (
       <div className="container px-4 py-12 text-center">
         <h1 className="text-2xl font-bold mb-4">Craft not found</h1>
-        <p className="mb-6">The craft you're looking for doesn't exist or has been removed.</p>
+        <p className="mb-6">The craft you&apos;re looking for doesn&apos;t exist or has been removed.</p>
         <Link href="/explore">
           <Button>Browse All Crafts</Button>
         </Link>
@@ -65,12 +78,12 @@ export default function CraftPage() {
         <div>
           <h1 className="text-2xl md:text-3xl font-serif font-bold mb-2">{craft.title}</h1>
           <div className="flex items-center mb-4">
-            <Link href={`/creator/${creator.id}`} className="flex items-center group">
+            <Link href={`/creator/${creator?.id}`} className="flex items-center group">
               <Avatar className="h-6 w-6 mr-2">
-                <AvatarImage src={creator?.avatar || "/default-avatar.png"} alt={creator?.name} />
-                <AvatarFallback>{creator?.name?.charAt(0)}</AvatarFallback>
+                <AvatarImage src={creator?.avatar || "/default-avatar.png"} alt={creator?.name || "Unknown"} />
+                <AvatarFallback>{creator?.name?.charAt(0) || "U"}</AvatarFallback>
               </Avatar>
-              <span className="text-sm text-muted-foreground group-hover:text-foreground">{creator?.name}</span>
+              <span className="text-sm text-muted-foreground group-hover:text-foreground">{creator?.name || "Unknown"}</span>
             </Link>
           </div>
         </div>

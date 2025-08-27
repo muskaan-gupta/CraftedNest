@@ -1,46 +1,21 @@
 "use client";
-import { useState } from "react";
+
 import { auth, db} from "@/firebase"; 
-import { createUserWithEmailAndPassword } from "firebase/auth";
+
 import { useRouter } from "next/navigation";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import Navbar from "@/components/Navbar";
 const SignUpPage = () => {
   const googleProvider = new GoogleAuthProvider();
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    role: "", // "creator" or "user"
-  });
+  
 
   const router = useRouter();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
-  const handleSignUp = async () => {
-    const { email, password, role } = formData;
-    if (!email || !password || !role) return alert("Please fill all fields");
 
-    try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      alert(`Signed up as ${role}`);
-      const user = userCredential.user;
-
-      // Store additional user info in Firestore
-      await setDoc(doc(db, "users", user.uid), {
-        email: user.email,
-        role: role,
-        createdAt: new Date(),
-      });
-      router.push(`/dashboard/`); // Redirect to respective dashboard
-    } catch (error: any) {
-      alert(error.message);
-    }
-  };
+  
 
   const handleGoogleSignInUser = async () => {
     try {
@@ -53,8 +28,8 @@ const SignUpPage = () => {
       });
       alert(`Signed in as ${user.displayName} (User)`);
       router.push("/dashboard"); // Redirect to user dashboard
-    } catch (error: any) {
-      alert(error.message);
+    } catch (error: unknown) {
+      alert((error as Error).message);
     }
   };
 
@@ -69,8 +44,8 @@ const SignUpPage = () => {
       });
       alert(`Signed in as ${user.displayName} (Creator)`);
       router.push("/dashboard"); // Redirect to creator dashboard
-    } catch (error: any) {
-      alert(error.message);
+    } catch (error: unknown) {
+      alert((error as Error).message);
     }
   };
 
