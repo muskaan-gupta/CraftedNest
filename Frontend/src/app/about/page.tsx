@@ -84,17 +84,17 @@ export default function AboutPage() {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                name: "Alex Rivera",
+                name: "Muskan Gupta",
                 role: "Founder & CEO",
                 bio: "Former craft shop owner with a passion for supporting independent creators."
               },
               {
-                name: "Jamie Chen",
+                name: "Shivansh Gupta",
                 role: "Head of Community",
                 bio: "Community builder focused on creating meaningful connections between creators and fans."
               },
               {
-                name: "Taylor Morgan",
+                name: "Chinmay Pandey",
                 role: "Lead Developer",
                 bio: "Tech enthusiast dedicated to building tools that make creators' lives easier."
               }

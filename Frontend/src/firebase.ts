@@ -9,14 +9,16 @@ import { getStorage } from "firebase/storage";
 
 
 
+// we can not use dotenv in the frontend, we have to use NEXT_PUBLIC_ prefix for environment variables
+
 const firebaseConfig = {
-  apiKey: "AIzaSyBcuqa03P9oDJC6EyuMMuokcPjS0HeNlrQ",
-  authDomain: "fir-auth-c2d1d.firebaseapp.com",
-  projectId: "fir-auth-c2d1d",
-  storageBucket: "fir-auth-c2d1d.firebasestorage.app",
-  messagingSenderId: "55950237615",
-  appId: "1:55950237615:web:e96982988210b01316195a",
-  measurementId: "G-1GNV40XG20"
+  apiKey: process.env.NEXT_PUBLIC_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID
 };
 
 // Initialize Firebase
@@ -25,5 +27,6 @@ const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
+
 
 export {auth,db, storage, app, analytics}; 

@@ -2,7 +2,8 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
-import FeaturedCrafts from '@/components/Craft/featured-craft';
+
+
 
 export default function Home() {
   return (
@@ -38,7 +39,37 @@ export default function Home() {
         </section>
 
         {/* Featured Crafts */}
-        <FeaturedCrafts />
+        
+        <section className="py-10">
+                  <h3 className="text-3xl font-bold text-center text-black mb-6">Featured Crafts</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    {/* Example Craft Items */}
+                    <div className="bg-white rounded-lg shadow-md p-4">
+                      <Image src="/craft1.png" alt="Craft 1" width={300} height={200} className="rounded" />
+                      <h4 className="font-bold text-black mt-2"></h4>
+                      <p className="text-gray-600">Beautifully crafted ceramic pieces.</p>
+                      <Link legacyBehavior href="/crafts/1">
+                        <a className="text-blue-500 mt-2 block hover:underline">View Details</a>
+                      </Link>
+                    </div>
+                    <div className="bg-white rounded-lg shadow-md p-4">
+                      <Image src="/craft2.png" alt="Craft 2" width={300} height={200} className="rounded" />
+                      <h4 className="font-bold text-black mt-2">Wooden Sculptures</h4>
+                      <p className="text-gray-600">Intricate designs carved by skilled artisans.</p>
+                      <Link legacyBehavior href="/crafts/2">
+                        <a className="text-blue-500 mt-2 block hover:underline">View Details</a>
+                      </Link>
+                    </div>
+                    <div className="bg-white rounded-lg shadow-md p-4">
+                      <Image src="/craft3.png" alt="Craft 3" width={300} height={200} className="rounded" />
+                      <h4 className="font-bold text-black mt-2">Handwoven Baskets</h4>
+                      <p className="text-gray-600">Eco-friendly and stylish storage solutions.</p>
+                      <Link legacyBehavior href="/crafts/3">
+                        <a className="text-blue-500 mt-2 block hover:underline">View Details</a>
+                      </Link>
+                    </div>
+                  </div>
+                </section>
         {/* Call to Action Section */}
         <section className="text-center py-20 bg-white rounded-lg shadow-md"  style={{
     backgroundImage: "url('https://i.makeagif.com/media/8-29-2017/BoktV9.gif')",

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db, storage, auth } from "@/firebase";
+import Navbar from "@/components/Navbar";
 
 export default function AddProduct() {
   const [title, setTitle] = useState("");
@@ -21,7 +22,6 @@ export default function AddProduct() {
     setUploading(true);
 
     try {
-      
       const user = auth.currentUser;
       if (!user) {
         alert("You must be logged in to add a product.");
@@ -60,41 +60,50 @@ export default function AddProduct() {
   };
 
   return (
-    <div className="max-w-xl mx-auto mt-10 p-4">
-      <h2 className="text-2xl font-bold mb-4">Add a New Product</h2>
-      <input
-        type="text"
-        placeholder="Title"
-        className="w-full p-2 mb-3 border rounded"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <textarea
-        placeholder="Description"
-        className="w-full p-2 mb-3 border rounded"
-        value={desc}
-        onChange={(e) => setDesc(e.target.value)}
-      />
-      <input
-        type="number"
-        placeholder="Price"
-        className="w-full p-2 mb-3 border rounded"
-        value={price}
-        onChange={(e) => setPrice(e.target.value)}
-      />
-      <input
-        type="file"
-        accept="image/*"
-        className="mb-3"
-        onChange={(e) => setImage(e.target.files?.[0] || null)}
-      />
-      <button
-        className="bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50"
-        onClick={handleAddProduct}
-        disabled={uploading}
-      >
-        {uploading ? "Uploading..." : "Add Product"}
-      </button>
-    </div>
+    <>
+      <Navbar />
+      <div className="max-w-2xl mx-auto mt-10 p-6 bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg shadow-lg">
+        <h2 className="text-3xl font-bold text-center text-white mb-6">
+          Add a New Product
+        </h2>
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <form className="space-y-4">
+            <input
+              type="text"
+              placeholder="Title"
+              className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <textarea
+              placeholder="Description"
+              className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
+              value={desc}
+              onChange={(e) => setDesc(e.target.value)}
+            />
+            <input
+              type="number"
+              placeholder="Price"
+              className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+            />
+            <input
+              type="file"
+              accept="image/*"
+              className="w-full p-3 border rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
+              onChange={(e) => setImage(e.target.files?.[0] || null)}
+            />
+            <button
+              className="w-full bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 disabled:opacity-50"
+              onClick={handleAddProduct}
+              disabled={uploading}
+            >
+              {uploading ? "Uploading..." : "Add Product"}
+            </button>
+          </form>
+        </div>
+      </div>
+    </>
   );
 }

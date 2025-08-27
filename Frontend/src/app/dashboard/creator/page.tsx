@@ -1,6 +1,5 @@
 "use client";
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { useEffect, useState } from "react";
@@ -16,41 +15,7 @@ const DashboardPage = () => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<null | User>(null);
   // Fetch crafts created by the logged-in user
-  useEffect(() => {
-    const fetchCrafts = async () => {
-      try {
-        const user = auth.currentUser;
-        if (!user) {
-          alert("You must be logged in to view your crafts.");
-          return;
-        }
-        setUser(user);
-
-        const querySnapshot = await getDocs(
-          collection(db, "products")
-        );
-        const userCrafts = querySnapshot.docs
-          .filter((doc) => doc.data().creatorId === user.uid)
-          .map((doc) => {
-            const data = doc.data();
-            return {
-              id: doc.id,
-              imageUrl: data.imageUrl || "",
-              title: data.title || "",
-              description: data.description || "",
-              price: data.price || 0,
-            };
-          });
-          setCrafts(userCrafts);
-        } catch (error) {
-          console.error("Error fetching crafts:", error);
-        } finally {
-          setLoading(false);
-        }
-      };
   
-      fetchCrafts();
-    }, []);
     const handleDelete = async (id: string) => {
       try {
         await deleteDoc(doc(db, "products", id));

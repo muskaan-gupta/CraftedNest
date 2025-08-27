@@ -71,28 +71,6 @@ const LoginPage = () => {
       <div className="bg-white p-8 rounded-lg shadow-xl w-96 border border-gray-200">
         <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">Login to Your Account</h2>
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          className="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          onChange={handleChange}
-        />
-
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          className="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          onChange={handleChange}
-        />
-
-        <button
-          onClick={handleLogin}
-          className="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition duration-300"
-        >
-          Login
-        </button>
 
         <div className="flex flex-col space-y-4 mt-6">
           <button
