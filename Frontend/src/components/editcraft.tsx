@@ -4,6 +4,7 @@ import { useParams, useRouter } from "next/navigation";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db, storage } from "@/firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import Image from "next/image";
 
 const EditProduct = () => {
   const { id } = useParams();
@@ -69,7 +70,7 @@ const EditProduct = () => {
       <input type="text" placeholder="Title" className="input" value={title} onChange={(e) => setTitle(e.target.value)} />
       <textarea placeholder="Description" className="input my-2" value={description} onChange={(e) => setDescription(e.target.value)} />
       <input type="number" placeholder="Price" className="input" value={price} onChange={(e) => setPrice(e.target.value)} />
-      <img src={imageUrl} alt="Current" className="w-48 h-48 object-cover my-2" />
+      <Image src={imageUrl} alt="Current" width={200} height={200} className="w-48 h-48 object-cover my-2" />
       <input type="file" className="input my-2" onChange={(e) => setImage(e.target.files?.[0] || null)} />
       <button className="bg-green-600 text-white px-4 py-2 rounded mt-4" onClick={handleUpdate} disabled={loading}>
         {loading ? "Saving..." : "Update Product"}

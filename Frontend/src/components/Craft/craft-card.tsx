@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -28,9 +29,11 @@ export default function CraftCard({ craft, creator }: CraftCardProps) {
     <Link href={`/craft/${craft.id}`}>
       <Card className="overflow-hidden h-full transition-all hover:shadow-md">
         <div className="aspect-square relative overflow-hidden">
-          <img
+          <Image
             src={craft.images[0]}
             alt={craft.title}
+            width={500}
+            height={500}
             className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
           />
           {craft.featured && (
