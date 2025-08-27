@@ -33,10 +33,10 @@ Product images are stored using Cloudinary for fast and reliable delivery.
 
 - **Framework:** Next.js  
 - **Frontend:** React, Tailwind CSS  
-- **Backend:** Node.js, Express *(if used)*  
-- **Database:** MongoDB *(optional)*  
-- **Authentication:** JWT, NextAuth *(optional)*  
-- **Image Uploads:** Cloudinary, Multer *(optional)*
+- **Backend:** Node.js, Express 
+- **Database:** MongoDB  
+- **Authentication:** JWT, NextAuth 
+- **Image Uploads:** Cloudinary, Multer 
 
 ---
 
@@ -48,22 +48,41 @@ Product images are stored using Cloudinary for fast and reliable delivery.
 
 ---
 
-## 🧪 Tech Stack
 
 ### Frontend
-- Next.js
-- Tailwind CSS
-- React.js
+- **Responsive Design**: Ensures seamless user experience across devices.
+- **Dynamic Pages**:
+  - Explore Page: Browse curated categories of handmade crafts.
+  - About Page: Learn more about the platform and its mission.
+  - Profile Page: View and edit user profiles.
+- **Next.js Image Optimization**: Replaced `<img>` tags with `<Image />` for better performance.
+- **Client-Side Navigation**: Integrated `useSearchParams` for dynamic query handling.
 
 ### Backend
-- Node.js + Express.js
-- MongoDB + Mongoose
-- Cloudinary + Multer (file uploads)
-- Firebase
+- **Firebase Integration**:
+  - Authentication: Google login for secure access.
+  - Firestore Database: Store user and craft data.
+  - Cloud Storage: Manage craft images.
+- **Middleware**:
+  - Authentication Middleware: Protect routes.
+  - Multer Middleware: Handle file uploads.
 
-### Tools & DevOps
-- Git, GitHub
-- Render (Deployment)
-- Postman (API testing)
+### Deployment
+- **Vercel**: Optimized for serverless deployment.
+- **Next.js Configuration**: Added external image domains for compatibility.
 
----
+
+## Deployment
+
+The project is deployed on Vercel. Visit the live site [here](https://craftednest.vercel.app).
+
+
+
+
+## Technologies Used
+
+### Authentication
+- **Firebase**: Used for login and signup due to its simplicity and robust authentication features.
+
+### Database
+- **MongoDB**: Utilized for storing images and other data, providing scalability and flexibility for the application.
