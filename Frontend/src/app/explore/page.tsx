@@ -1,6 +1,5 @@
-"use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { SAMPLE_CRAFTS, FEATURED_CREATORS, CATEGORIES, MATERIALS } from "@/lib/constants";
 import CraftCard from "../../components/Craft/craft-card";
@@ -70,6 +69,7 @@ export default function ExplorePage() {
   };
 
   return (
+    <Suspense fallback={<div>Loading...</div>}>
     <>
       <Navbar />
       <div className="container px-4 py-8 mx-auto">
@@ -373,5 +373,6 @@ export default function ExplorePage() {
         </div>
       </div>
     </>
+    </Suspense>
   );
 }
