@@ -14,13 +14,6 @@ interface Creator {
   name: string;
 }
 
-// Updated creator type
-const creator: Creator | null = {
-  id: "",
-  avatar: "",
-  name: "",
-};
-
 export default function CraftPage() {
   const params = useParams();
   const craftId = params.id as string;

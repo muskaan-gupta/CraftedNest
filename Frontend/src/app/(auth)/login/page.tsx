@@ -27,8 +27,12 @@ const LoginPage = () => {
     else {
         alert("User role not found. Please contact support.");
       }
-    } catch (error: any) {
-      alert(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        alert(error.message);
+      } else {
+        alert("An unknown error occurred.");
+      }
     }
   };
 
@@ -53,7 +57,7 @@ const LoginPage = () => {
         </div>
 
         <p className="text-center text-sm text-gray-600 mt-6">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link href="/signup" className="text-blue-500 hover:underline">
             Sign Up
           </Link>

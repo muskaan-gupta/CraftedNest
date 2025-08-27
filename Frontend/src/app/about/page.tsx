@@ -78,7 +78,7 @@ export default function AboutPage() {
         <div className="bg-muted p-8 rounded-lg">
           <h2 className="text-3xl font-bold mb-6 text-center">Our Team</h2>
           <p className="text-center mb-8">
-            We're a passionate team of designers, developers, and craft enthusiasts dedicated to building the best platform for creators.
+            We&apos;re a passionate team of designers, developers, and craft enthusiasts dedicated to building the best platform for creators.
           </p>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {[
